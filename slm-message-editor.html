@@ -1,2 +1,187 @@
-﻿
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <title>without bootstrap</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+        * {
+            font-family: "DM Sans", sans-serif !important;
+        }
+        
+        body {
+            background-color: #F8F8FA;
+        }
+        
+        .container {
+            margin: 0 auto;
+            width: 375px
+        }
+        
+        .note-frame {
+            border-radius: 16px;
+            border-color: #D3D5E1!important;
+            background: #fff;
+        }
+        
+        .note-toolbar {
+            padding: 11px 16px 16px 16px!important;
+            background-color: #fff;
+            border-color: #D3D5E1;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .note-btn {
+            font-size: 16px;
+            border: none;
+            color: #5954EB;
+            background-color: #fff;
+        }
+        
+        .note-btn-group {
+            display: flex;
+        }
+        
+        .note-btn-group:first-child {
+            flex-grow: 2;
+        }
+        
+        .note-btn:focus,
+        .note-btn.focus {
+            color: #5954EB;
+            background-color: #fff;
+            border-color: none;
+            border: none
+        }
+        
+        .note-btn:hover {
+            color: #5954EB;
+            background-color: #fff;
+            border-color: none;
+            border: none;
+        }
+        
+        .note-btn:active,
+        .note-btn.active {
+            color: #252F67;
+            border: none;
+            background-color: #D3D5E1;
+            border-radius: 0;
+            box-shadow: none
+        }
+        
+        .note-dropdown-menu {
+            border: none;
+            padding: 8px;
+            background-clip: padding-box;
+            box-shadow: 2px 2px 4px rgba(37, 47, 103, 0.16);
+            border-radius: 8px;
+        }
+        
+        .note-dropdown-item:hover {
+            background-color: #D3D5E1
+        }
+        
+        a.note-dropdown-item,
+        a.note-dropdown-item:hover {
+            margin: 8px 0;
+            color: #252F67;
+        }
+        
+        .note-modal-content {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 2px 2px 16px rgba(37, 47, 103, 0.16);
+        }
+        
+        .note-modal-header {
+            border: none
+        }
+        
+        .note-modal-title {
+            color: #252F67;
+        }
+        
+        .note-form-label {
+            color: #252F67;
+            margin-bottom: 16px
+        }
+        
+        .note-input {
+            background-color: #F8F8FA;
+            border: 0;
+            border-bottom: 2px solid #D3D5E1;
+            padding: 16px 8px;
+            border-radius: 6px 6px 0 0;
+            color: #252F67;
+        }
+        
+        .note-tooltip-content {
+            border-radius: 4px;
+            background-color: #252F67;
+        }
+        
+        .note-tooltip.bottom .note-tooltip-arrow {
+            border-bottom-color: #252F67;
+        }
+        
+        .note-placeholder {
+            top: 16px;
+            color: #9297B3;
+        }
+        
+        .note-editor.note-frame .note-statusbar,
+        .note-editor.note-airframe .note-statusbar {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="summernote"></div>
+    </div>
+    <script>
+        $('#summernote').summernote({
+            callbacks: {
+                onChange: function(contents) {
+                    console.log('onChange:', contents);
+                    contentEditor = contents;
+                    localStorage.setItem("getEditorValue", contents);
+                },
+            },
+            placeholder: 'Escreva aqui sua mensagem',
+            tabsize: 4,
+            height: 550,
+            styleTags: [{
+                title: 'Headline',
+                tag: 'h3',
+                className: 'Headline',
+                value: 'h3'
+            }, {
+                title: 'Body',
+                tag: 'p',
+                className: 'Body',
+                value: 'p'
+            }, ],
+            toolbar: [
+                ['style', ['style']],
+                ['insert', ['picture']],
+                ['font', ['bold', 'italic']]
+            ]
+
+        }).summernote('code', localStorage.getItem("getEditorValue"));
+    </script>
+
+</body>
+
+</html>
